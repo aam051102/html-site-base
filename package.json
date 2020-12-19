@@ -1,0 +1,29 @@
+{
+    "name": "html-site-base",
+    "version": "1.0.0",
+    "description": "",
+    "main": "gulpfile.js",
+    "scripts": {
+        "dev": "gulp dev",
+        "build": "gulp build"
+    },
+    "keywords": [],
+    "author": "MadCreativity",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.8.6",
+        "@babel/preset-env": "^7.8.6",
+        "gulp": "^4.0.2",
+        "gulp-babel": "^8.0.0",
+        "gulp-clean-css": "^4.3.0",
+        "gulp-connect": "^5.7.0",
+        "gulp-ejs": "^5.0.0",
+        "gulp-htmlmin": "^5.0.1",
+        "gulp-minify": "^3.1.0",
+        "gulp-rename": "^2.0.0",
+        "gulp-sass": "^4.0.2",
+        "gulp-util": "^3.0.8",
+        "gulp-zip": "^5.0.2",
+        "node-sass": "^4.13.1"
+    }
+}
