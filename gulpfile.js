@@ -9,6 +9,8 @@ const cleanCSS = require("gulp-clean-css");
 const htmlmin = require("gulp-htmlmin");
 const zip = require("gulp-zip");
 
+const picture = require("./modules/gulp-picture");
+
 sass.compiler = require("node-sass");
 
 function html(next) {
@@ -18,6 +20,19 @@ function html(next) {
                 console.error(err);
             })
         )
+        /*.pipe(
+            picture({
+                webp: true,
+                webpQuality: 80,
+                jp2: true,
+                ieFallback: true,
+                publicDir: "public",
+                outputDir: "dist",
+                exclude: ["image/gif", "image/svg"],
+            }).on("error", (err) => {
+                console.error(err);
+            })
+        )*/
         .pipe(
             htmlmin({
                 /*collapseInlineTagWhitespace: true,*/
