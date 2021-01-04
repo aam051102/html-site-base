@@ -25,6 +25,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Remove figure margin */
+figure {
+    margin: 0;
+}
+
 /* Make images easier to work with */
 img,
 picture {
@@ -128,6 +133,7 @@ canvas,
 audio,
 iframe,
 embed,
+textarea,
 object {
     vertical-align: middle;
     max-width: 100%;
