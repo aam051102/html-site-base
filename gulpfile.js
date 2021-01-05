@@ -8,8 +8,7 @@ const babel = require("gulp-babel");
 const cleanCSS = require("gulp-clean-css");
 const htmlmin = require("gulp-htmlmin");
 const zip = require("gulp-zip");
-
-const picture = require("./modules/gulp-picture");
+const autoprefixer = require("gulp-autoprefixer");
 
 sass.compiler = require("node-sass");
 
@@ -20,22 +19,8 @@ function html(next) {
                 console.error(err);
             })
         )
-        /*.pipe(
-            picture({
-                webp: true,
-                webpQuality: 80,
-                jp2: true,
-                ieFallback: true,
-                publicDir: "public",
-                outputDir: "dist",
-                exclude: ["image/gif", "image/svg"],
-            }).on("error", (err) => {
-                console.error(err);
-            })
-        )*/
         .pipe(
             htmlmin({
-                /*collapseInlineTagWhitespace: true,*/
                 collapseWhitespace: true,
                 removeTagWhitespace: true,
                 removeComments: true,
@@ -58,7 +43,9 @@ function html(next) {
 }
 
 function public(next) {
-    gulp.src("./public/**/*").pipe(gulp.dest("./dist/")).pipe(connect.reload());
+    gulp.src("./public/**/*.*")
+        .pipe(gulp.dest("./dist/"))
+        .pipe(connect.reload());
 
     next();
 }
@@ -66,6 +53,11 @@ function public(next) {
 function scss(next) {
     gulp.src("./src/css/**/*.scss")
         .pipe(sass().on("error", (err) => console.error(err)))
+        .pipe(
+            autoprefixer({
+                cascade: false,
+            })
+        )
         .pipe(cleanCSS())
         .pipe(gulp.dest("./dist/assets/css"))
         .pipe(connect.reload());
@@ -74,7 +66,7 @@ function scss(next) {
 }
 
 function js(next) {
-    gulp.src("./src/js/templates/**/*.js")
+    gulp.src("./src/js/**/*.js")
         .pipe(
             babel({
                 presets: ["@babel/env"],
@@ -106,7 +98,7 @@ function watchHtml() {
 }
 
 function watchPublic() {
-    gulp.watch("./public/**/*", { ignoreInitial: false }, public);
+    gulp.watch("./public/**/*.*", { ignoreInitial: false }, public);
 }
 
 function watchScss() {
